@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Button } from 'baseui/button';
 import { ButtonGroup } from 'baseui/button-group';
 import { Editor, EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import { Input, SIZE } from 'baseui/input';
 
 import '../style/Note.css';
 
@@ -92,7 +93,7 @@ export default () => {
         const res = await fetch(API_URL);
         const data = await res.json();
 
-        if (data.data.note.owner != userId) return;
+        if (data.data.note.owner !== userId) return;
         setContent(data.data.note.content);
 
         const contentState = convertFromRaw(JSON.parse(data.data.note.content));
@@ -106,9 +107,9 @@ export default () => {
       }
     }
     getNoteData();
-  }, [title]);
+  }, [noteId, userId]);
 
-  if (loggedIn == false) return <Redirect to="/login"/>;
+  if (loggedIn === false) return <Redirect to="/login"/>;
   if (deleted) return <Redirect to="/dashboard"/>;
 
   return (
@@ -118,7 +119,7 @@ export default () => {
 	  </div>
 	  <div className="note-page-content dashboard-content-container">
 		{
-		  title == "" 
+		  title === "" 
 		  ? <></> 
 		  : <ButtonGroup>
 			  {
@@ -129,8 +130,34 @@ export default () => {
         }
         <Button onClick={deleteNote}>Delete</Button>
 			</ButtonGroup>
-		}
-		<h1>{ title }</h1>
+    }
+    {
+      editMode
+      ? <div className="edit-note-title-container">
+        <Input
+          className="edit-note-title-input"
+          onChange={e => setTitle(e.target.value)}
+          autoFocus
+          value={title}
+          size={SIZE.large}
+          placeholder="Click here to edit title"
+          overrides={{
+          Input: {
+            style: ({ $theme }) => {
+              return {
+                border: 'none !important',
+                backgroundColor: '#fff',
+                fontFamily: 'ubuntu',
+                fontSize: '2rem'
+              }
+            }
+          }
+          }}
+        >
+        </Input>
+        </div>
+      : <h1>{ title }</h1>
+    }
 		<Editor
       autofocus
 		  editorState={editorState}

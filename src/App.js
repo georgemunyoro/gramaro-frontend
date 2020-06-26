@@ -9,12 +9,8 @@ import {
 
 import { Client as Styletron } from 'styletron-engine-atomic'
 import { Provider as StyletronProvider } from 'styletron-react';
-import { LightTheme, BaseProvider, styled } from 'baseui';
-import { StatefulInput } from 'baseui/input';
-import { FlexGrid, FlexGridItem } from 'baseui/flex-grid';
+import { LightTheme, BaseProvider } from 'baseui';
 
-import Sidebar from './components/Navbar';
-import NotesList from './components/NotesList';
 import Dashboard from './components/pages/Dashboard';
 import Navbar from './components/Navbar';
 import Signup from './components/pages/Signup';

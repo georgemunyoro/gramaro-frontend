@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { Input, SIZE } from 'baseui/input';
+import { Input } from 'baseui/input';
 import { Button } from 'baseui/button';
 import { Notification } from 'baseui/notification';
 import { Redirect } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserId, setLogStatus } from '../../actions';
+import { setUserId, setLogStatus, setUsername } from '../../actions';
 
 import '../style/Login.css';
 
 export default () => {
   const dispatch = useDispatch();
-  const [auth, setAuth] = React.useState(false);
   const [alertMessages, setAlertMessages] = React.useState([]);
 
   const [password, setPassword] = React.useState("");
@@ -34,9 +33,10 @@ export default () => {
 		})
 	  });
 	  const data = await res.json();
-	  if (data.message == "ok") {
+	  if (data.message === "ok") {
 		setAlertMessages([]);
 		dispatch(setUserId(data.data.uuid));
+		dispatch(setUsername('@'+data.data.username));
 		dispatch(setLogStatus(true));
 	  } else {
 		setAlertMessages(["Incorrect login info"])

@@ -1,11 +1,5 @@
 import * as React from 'react';
 import { Input, SIZE } from "baseui/input";
-import { newExpression } from '@babel/types';
-import {
-  List,
-  arrayMove,
-  arrayRemove
-} from 'baseui/dnd-list';
 import Note from './Note';
 import { useSelector } from 'react-redux';
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Input, SIZE } from 'baseui/input';
+import { Input } from 'baseui/input';
 import { Button } from 'baseui/button';
-import { ButtonGroup } from 'baseui/button-group';
 import { Notification } from 'baseui/notification';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -9,7 +8,6 @@ import { useSelector } from 'react-redux';
 import '../style/Signup.css';
 
 export default () => {
-  const [auth, setAuth] = React.useState(false);
   const [alertMessages, setAlertMessages] = React.useState([]);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -39,8 +37,6 @@ export default () => {
 	  });
 	  const data = await res.json();
 	  if (data.message === "ok") {
-		setAuth(true);
-		// set user
 		alert(data.data.user.uuid);
 	  } else {
 		setAlertMessages([data.message]);

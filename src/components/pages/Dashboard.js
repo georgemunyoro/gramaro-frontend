@@ -13,9 +13,7 @@ export default () => {
   const loggedIn = useSelector(state => state.loggedIn);
   const userId = useSelector(state => state.userId);
 
-  const [notes, setNotes] = React.useState([]);
-
-  if (loggedIn == false) return <Redirect to="/login"/>
+  if (!loggedIn) return <Redirect to="/login"/>
 
   return (
 	<div className="dashboard-container">

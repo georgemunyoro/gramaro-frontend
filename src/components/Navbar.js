@@ -3,18 +3,10 @@ import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
 import {Button} from 'baseui/button';
 import {Layer} from 'baseui/layer';
-import {Redirect} from 'react-router-dom';
 import {useHistory} from 'react-router';
-import {
-  ChevronDown,
-  Delete,
-  Overflow as UserIcon,
-  Upload as Icon,
-} from 'baseui/icon';
 
 import {
   Unstable_AppNavBar as AppNavBar,
-  POSITION,
 } from 'baseui/app-nav-bar';
 
 import { Menu as MenuIcon } from 'baseui/icon';
@@ -38,7 +30,7 @@ const getMainNav = (username) => (
 	  icon: MenuIcon,
 	  item: {label: username},
 	  mapItemToNode: renderItem,
-	  mapItemToNode: renderItem
+	  mapItemToString: renderItem
 	}
   ]
 )
@@ -56,33 +48,6 @@ const STRANGER_NAV = [
     mapItemToNode: renderItem,
     mapItemToString: renderItem,
   }
-];
-
-const USER_NAV = [
-  {
-    icon: UserIcon,
-    item: {label: 'Manage Account'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-  {
-    icon: UserIcon,
-    item: {label: 'More'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-  {
-    icon: UserIcon,
-    item: {label: 'Delete All Notes'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
-  {
-    icon: UserIcon,
-    item: {label: 'Logout'},
-    mapItemToNode: renderItem,
-    mapItemToString: renderItem,
-  },
 ];
 
 function renderItem(item) {
@@ -161,15 +126,15 @@ export default () => {
                 setActiveNavItem(item);
 				console.log(item.item.label)
 				switch (item.item.label) {
-				  case "Home":
+            case "Home":
 					history.push({ pathname: '/' }); break;
-				  case "New Note":
+            case "New Note":
 					history.push({ pathname: '/create' }); break;
-				  case "Login":
+            case "Login":
 					history.push({ pathname: '/login' }); break;
-				  case "Signup":
+            case "Signup":
 					history.push({ pathname: '/signup' }); break;
-				  case "My Notes":
+            case "My Notes":
 					history.push({ pathname: '/dashboard' }); break;
 				}
               }}
