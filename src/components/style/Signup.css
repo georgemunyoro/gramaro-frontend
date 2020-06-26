@@ -1,0 +1,28 @@
+
+.signup-container {
+  margin-top: 10%;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .signup-container {
+	padding: 4rem 30%;
+  }
+}
+
+@media (max-width: 1025px) {
+  .signup-container {
+	padding: 10% 20%;
+  }
+}
+
+@media (max-width: 640px) {
+  .signup-container {
+	padding: 25% 5%;
+  }
+}
+
+.signup-container > .input {
+}
