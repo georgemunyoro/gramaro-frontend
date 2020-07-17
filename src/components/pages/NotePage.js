@@ -39,7 +39,7 @@ export default () => {
       return;
     }
     try {
-	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/id/' + noteId, {
+	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
         method: "DELETE",
         headers: {
           'Accept': 'application/json',
@@ -65,7 +65,7 @@ export default () => {
       return;
     }
     try {
-	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/id/' + noteId, {
+	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
         method: "PATCH",
         headers: {
           'Accept': 'application/json',
