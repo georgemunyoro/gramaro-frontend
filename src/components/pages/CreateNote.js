@@ -31,8 +31,7 @@ export default () => {
 	  return;
 	}
 	try {
-	  const API_CALL_URL = 'http://192.168.43.1:3001/notes';
-	  const res = await fetch(API_CALL_URL, {
+	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes', {
 		method: "POST",
 		headers: {
 		  'Accept': 'application/json',

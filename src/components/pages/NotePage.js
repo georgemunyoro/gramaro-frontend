@@ -39,8 +39,7 @@ export default () => {
       return;
     }
     try {
-      const API_CALL_URL = 'http://192.168.43.1:3001/notes/'+noteId;
-      const res = await fetch(API_CALL_URL, {
+	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
         method: "DELETE",
         headers: {
           'Accept': 'application/json',
@@ -66,8 +65,7 @@ export default () => {
       return;
     }
     try {
-      const API_CALL_URL = 'http://192.168.43.1:3001/notes/'+noteId;
-      const res = await fetch(API_CALL_URL, {
+	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
         method: "PATCH",
         headers: {
           'Accept': 'application/json',
@@ -89,8 +87,7 @@ export default () => {
   React.useEffect(() => {
     async function getNoteData() {
       try {
-        const API_URL = 'http://192.168.43.1:3001/notes/id/'+noteId
-        const res = await fetch(API_URL);
+		const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId);
         const data = await res.json();
 
         if (data.data.note.owner !== userId) return;

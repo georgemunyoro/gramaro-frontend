@@ -20,8 +20,7 @@ export default () => {
   const handleFormSubmit = async (event) => {
 	event.preventDefault();
 	try {
-	  const API_CALL_URL = 'http://192.168.43.1:3001/login';
-	  const res = await fetch(API_CALL_URL, {
+	  const res = await fetch(process.env.REACT_APP_API_URL + '/login', {
 		method: "POST",
 		headers: {
 		  'Accept': 'application/json',
@@ -42,7 +41,7 @@ export default () => {
 		setAlertMessages(["Incorrect login info"])
 	  }
 	} catch (error) {
-	  console.error(error.stack);
+	  console.log(error);
 	}
   }
 
