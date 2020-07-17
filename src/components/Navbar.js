@@ -31,7 +31,7 @@ const getMainNav = (username) => (
 	  item: {label: username},
 	  mapItemToNode: renderItem,
 	  mapItemToString: renderItem
-	}
+  }
   ]
 )
 

@@ -19,7 +19,13 @@
 /* */
 
 .note-page-content {
-  margin: 6rem;
+  margin: 6.6rem 0.5rem;
+}
+
+@media (max-width: 1024) {
+  .note-page-content {
+    margin: 1rem !important;
+  }
 }
 
 /* */
