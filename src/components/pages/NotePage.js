@@ -39,7 +39,7 @@ export default () => {
       return;
     }
     try {
-	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
+	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/id/' + noteId, {
         method: "DELETE",
         headers: {
           'Accept': 'application/json',
@@ -65,7 +65,7 @@ export default () => {
       return;
     }
     try {
-	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
+	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/id/' + noteId, {
         method: "PATCH",
         headers: {
           'Accept': 'application/json',
@@ -87,7 +87,7 @@ export default () => {
   React.useEffect(() => {
     async function getNoteData() {
       try {
-		const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId);
+		const res = await fetch(process.env.REACT_APP_API_URL + '/notes/id/' + noteId);
         const data = await res.json();
 
         if (data.data.note.owner !== userId) return;
