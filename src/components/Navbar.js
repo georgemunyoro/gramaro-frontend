@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {useStyletron} from 'baseui';
 import {StyledLink} from 'baseui/link';
-import {Button} from 'baseui/button';
 import {Layer} from 'baseui/layer';
 import {useHistory} from 'react-router';
 
@@ -77,10 +76,8 @@ export default () => {
   const loggedIn = useSelector(state => state.loggedIn);
   const username = useSelector(state => state.username);
 
+  const [isNavBarVisible,] = React.useState(true);
   const [css] = useStyletron();
-  const [isNavBarVisible, setIsNavBarVisible] = React.useState(
-    true,
-  );
 
   const [activeNavItem, setActiveNavItem] = React.useState();
   const containerStyles = css({
@@ -136,6 +133,9 @@ export default () => {
 					history.push({ pathname: '/signup' }); break;
             case "My Notes":
 					history.push({ pathname: '/dashboard' }); break;
+			default:
+					history.push({ pathname: '/dashboard' }); break;
+				
 				}
               }}
             />

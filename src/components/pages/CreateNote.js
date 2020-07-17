@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Input, SIZE } from 'baseui/input';
 import { Button } from 'baseui/button';
-import { Textarea } from 'baseui/textarea';
-import { ButtonGroup } from 'baseui/button-group';
 import { Notification } from 'baseui/notification';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -13,11 +11,8 @@ import 'draft-js/dist/Draft.css';
 // Icons
 import { Upload, Hide } from 'baseui/icon';
 import DeleteAlt from 'baseui/icon/delete-alt';
-import { Filter } from 'baseui/icon/filter';
 
 import '../style/CreateNote.css';
-
-import NoteEditor from '../NoteEditor.js';
 
 export default () => {
   const [editorState, setEditorState] = React.useState(
@@ -27,9 +22,8 @@ export default () => {
   const userId = useSelector(state => state.userId);
   const loggedIn = useSelector(state => state.loggedIn);
 
-  const [auth, setAuth] = React.useState(false);
   const [alertMessages, setAlertMessages] = React.useState([]);
-  const [title, setTitle] = React.useState(""); const [content, setContent] = React.useState(""); 
+  const [title, setTitle] = React.useState("");
   const saveNote = async (event) => {
 	event.preventDefault();
 	if (title === "") {
@@ -67,7 +61,7 @@ export default () => {
 	event.preventDefault();
   }
 
-  if (loggedIn == false) return <Redirect to="/login"/>
+  if (loggedIn === false) return <Redirect to="/login"/>
 
   return (
 

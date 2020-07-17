@@ -3,10 +3,11 @@ import NotesList from './NotesList';
 
 export default ({ userId }) => {
 
-  const [value, setValue] = React.useState('');
+  const [value,] = React.useState('');
   return (
 	<div className="notes-view-container">
 	  <NotesList userId={userId} filter={value} />
 	</div>
 	);
 }
+
