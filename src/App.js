@@ -1,10 +1,11 @@
 import React from 'react';
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUserId, setLogStatus, setUsername } from './actions';
 
 import { Client as Styletron } from 'styletron-engine-atomic'
 import { Provider as StyletronProvider } from 'styletron-react';
@@ -20,6 +21,15 @@ import NotePage from './components/pages/NotePage';
 const engine = new Styletron();
 
 export default function App() {
+
+  const dispatch = useDispatch();
+
+  if (localStorage.getItem('uuid') !== null) {
+	dispatch(setUsername(localStorage.getItem('username')));
+	dispatch(setUserId(localStorage.getItem('uuid')));
+	dispatch(setLogStatus(true));
+  }
+
   return (
 	<StyletronProvider value={engine}>
 	  <BaseProvider theme={LightTheme}>

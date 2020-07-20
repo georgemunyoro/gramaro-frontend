@@ -35,8 +35,10 @@ export default () => {
 	  if (data.message === "ok") {
 		setAlertMessages([]);
 		dispatch(setUserId(data.data.uuid));
-		dispatch(setUsername('@'+data.data.username));
+		dispatch(setUsername(data.data.username));
 		dispatch(setLogStatus(true));
+		localStorage.setItem('uuid', data.data.uuid)
+		localStorage.setItem('username', data.data.username)
 	  } else {
 		setAlertMessages(["Incorrect login info"])
 	  }
@@ -46,6 +48,12 @@ export default () => {
   }
 
   if (loggedIn) return <Redirect to="/dashboard"/>
+  if (localStorage.getItem('uuid') !== null) {
+	dispatch(setUsername(localStorage.getItem('username')));
+	dispatch(setUserId(localStorage.getItem('uuid')));
+	dispatch(setLogStatus(true));
+	return <Redirect to="/dashboard"/>
+  }
 
   return (
 	<div className="login-container">
