@@ -11,7 +11,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/georgemunyoro/gramaro-frontend">
-    <img src="https://i.imgur.com/YJ5WkYP.png" alt="Logo" width="200" height="200">
+    <img src="https://i.imgur.com/k0m2i4z.png" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">gramaro</h3>
