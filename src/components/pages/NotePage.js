@@ -3,7 +3,7 @@ import { useParams, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from 'baseui/button';
 import { ButtonGroup } from 'baseui/button-group';
-import { Editor, EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import { Editor, EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
 import { Input, SIZE } from 'baseui/input';
 
 import '../style/Note.css';
@@ -31,6 +31,17 @@ export default () => {
     setEditorState(
       () => EditorState.createWithContent(contentState)
     );
+  }
+
+  const handleKeyCommand = (command, editorState) => {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+
+    if (newState) {
+      setEditorState(newState);
+      return 'handled';
+    }
+
+    return 'not-handled';
   }
 
   const deleteNote = async () => {
@@ -159,7 +170,8 @@ export default () => {
       autofocus
 		  editorState={editorState}
 		  onChange={setEditorState}
-		  readOnly={!editMode}
+      readOnly={!editMode}
+      handleKeyCommand={handleKeyCommand}
 		/>
 	  </div>
 	</div>
