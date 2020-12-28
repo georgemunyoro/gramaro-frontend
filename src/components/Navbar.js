@@ -107,7 +107,7 @@ export default () => {
     <React.Fragment>
       {isNavBarVisible ? (
         <Layer>
-          <div className={containerStyles}>
+          <div className={containerStyles} style={{zIndex: 100}}>
             <AppNavBar
               appDisplayName={appDisplayName}
               mainNav={loggedIn ? getMainNav(username) : STRANGER_NAV}
