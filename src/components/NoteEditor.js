@@ -1,12 +1,12 @@
-import 'draft-js/dist/Draft.css';
+import "draft-js/dist/Draft.css";
 
-import {Button} from "baseui/button"
-import {Editor, EditorState, RichUtils} from 'draft-js';
-import * as React from 'react';
+import { Button } from "baseui/button";
+import { Editor, EditorState, RichUtils } from "draft-js";
+import * as React from "react";
 
-export default ({value}) => {
-  const [editorState, setEditorState] = React.useState(
-    () => EditorState.createEmpty()
+export default ({ value }) => {
+  const [editorState, setEditorState] = React.useState(() =>
+    EditorState.createEmpty()
   );
 
   const handleKeyCommand = (command, editorState) => {
@@ -14,11 +14,11 @@ export default ({value}) => {
 
     if (newState) {
       setEditorState({ newState });
-      return 'handled';
+      return "handled";
     }
 
-    return 'not-handled';
-  }
+    return "not-handled";
+  };
 
   return (
     <div className="note-editor-container">
@@ -30,4 +30,4 @@ export default ({value}) => {
       />
     </div>
   );
-}
+};
