@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
-import { Button } from "baseui/button"
-
 import 'draft-js/dist/Draft.css';
 
-export default ({ value }) => {
+import {Button} from "baseui/button"
+import {Editor, EditorState, RichUtils} from 'draft-js';
+import * as React from 'react';
+
+export default ({value}) => {
   const [editorState, setEditorState] = React.useState(
     () => EditorState.createEmpty()
   );
