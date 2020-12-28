@@ -5,8 +5,9 @@ import { Notification } from 'baseui/notification';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { Editor, EditorState, convertToRaw, RichUtils } from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { EditorState, convertToRaw, RichUtils } from 'draft-js';
+import { Editor } from "react-draft-wysiwyg";
+import '../react-draft-wysiwyg.css';
 
 // Icons
 import { Upload, Hide } from 'baseui/icon';
@@ -24,6 +25,7 @@ export default () => {
 
   const [alertMessages, setAlertMessages] = React.useState([]);
   const [title, setTitle] = React.useState("");
+
   const saveNote = async (event) => {
     event.preventDefault();
     if (title === "") {
@@ -104,8 +106,9 @@ export default () => {
       <form>
         <div className="note-editor-container">
           <Editor
+            autofocus
             editorState={editorState}
-            onChange={setEditorState}
+            onEditorStateChange={setEditorState}
             handleKeyCommand={handleKeyCommand}
           />
         </div>
