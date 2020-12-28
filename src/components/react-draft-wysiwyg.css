@@ -845,7 +845,6 @@
 .rdw-editor-toolbar {
     display: flex;
     justify-content: flex-start;
-    background: white;
     flex-wrap: wrap;
     font-size: 15px;
     margin-bottom: 5px;
