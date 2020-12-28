@@ -3,10 +3,12 @@ import { useParams, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from 'baseui/button';
 import { ButtonGroup } from 'baseui/button-group';
-import { Editor, EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
+import { EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
+import { Editor } from "react-draft-wysiwyg";
 import { Input, SIZE } from 'baseui/input';
 
 import '../style/Note.css';
+import "../react-draft-wysiwyg.css"
 
 import Sidebar from '../Sidebar';
 
@@ -125,7 +127,9 @@ export default () => {
 	  <div className="dashboard-sidebar-container">
 		<Sidebar />
 	  </div>
-	  <div className="note-page-content dashboard-content-container">
+	  <div className="note-page-content dashboard-content-container" style={{
+      width: "70%"
+    }}>
 		{
 		  title === "" 
 		  ? <></> 
@@ -169,7 +173,7 @@ export default () => {
 		<Editor
       autofocus
 		  editorState={editorState}
-		  onChange={setEditorState}
+		  onEditorStateChange={setEditorState}
       readOnly={!editMode}
       handleKeyCommand={handleKeyCommand}
 		/>
