@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button, KIND as ButtonKind } from 'baseui/button';
-import { StatefulPopover } from "baseui/popover";
 import { ButtonGroup } from 'baseui/button-group';
 import { EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
@@ -14,7 +13,6 @@ import {
   ModalButton,
   ModalFooter,
   ROLE,
-  SIZE as modalSize
 } from "baseui/modal"
 
 import '../style/Note.css';
