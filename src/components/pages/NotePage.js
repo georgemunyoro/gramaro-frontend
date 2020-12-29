@@ -1,16 +1,56 @@
 import * as React from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Button } from 'baseui/button';
+import { Button, KIND as ButtonKind } from 'baseui/button';
+import { StatefulPopover } from "baseui/popover";
 import { ButtonGroup } from 'baseui/button-group';
 import { EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
 import { Input, SIZE } from 'baseui/input';
+import {
+  ModalHeader,
+  ModalBody,
+  Modal,
+  ModalButton,
+  ModalFooter,
+  ROLE,
+  SIZE as modalSize
+} from "baseui/modal"
 
 import '../style/Note.css';
 import "../react-draft-wysiwyg.css"
 
 import Sidebar from '../Sidebar';
+
+const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
+  // const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <Modal
+      onClose={onModalClose}
+      isOpen={true}
+      role={ROLE.dialog}
+      autoFocus
+      animate
+      closeable
+    >
+      <ModalHeader>Confirm Deletion</ModalHeader>
+      <ModalBody>Are you sure you want to delete this note?</ModalBody>
+      <ModalFooter>
+        <ModalButton
+          kind={ButtonKind.tertiary}
+          onClick={() => {
+            onModalClose();
+          }}>Cancel</ModalButton>
+        <ModalButton
+          onClick={() => {
+            onConfirm();
+            onModalClose();
+          }}>Yes</ModalButton>
+      </ModalFooter>
+    </Modal >
+  )
+}
 
 export default () => {
   const userId = useSelector(state => state.userId);
@@ -22,6 +62,8 @@ export default () => {
   const [editMode, setEditMode] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [deleted, setDeleted] = React.useState(false);
+
+  const [showNoteDeletionConfirmation, setShowNoteDeletionConfirmation] = React.useState(false);
 
   const [editorState, setEditorState] = React.useState(
     () => EditorState.createEmpty()
@@ -52,7 +94,7 @@ export default () => {
       return;
     }
     try {
-	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
+      const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
         method: "DELETE",
         headers: {
           'Accept': 'application/json',
@@ -78,7 +120,7 @@ export default () => {
       return;
     }
     try {
-	  const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
+      const res = await fetch(process.env.REACT_APP_API_URL + '/notes/' + noteId, {
         method: "PATCH",
         headers: {
           'Accept': 'application/json',
@@ -100,7 +142,7 @@ export default () => {
   React.useEffect(() => {
     async function getNoteData() {
       try {
-		const res = await fetch(process.env.REACT_APP_API_URL + '/notes/id/' + noteId);
+        const res = await fetch(process.env.REACT_APP_API_URL + '/notes/id/' + noteId);
         const data = await res.json();
 
         if (data.data.note.owner !== userId) return;
@@ -119,65 +161,73 @@ export default () => {
     getNoteData();
   }, [noteId, userId]);
 
-  if (loggedIn === false) return <Redirect to="/login"/>;
-  if (deleted) return <Redirect to="/dashboard"/>;
+  if (loggedIn === false) return <Redirect to="/login" />;
+  if (deleted) return <Redirect to="/dashboard" />;
 
   return (
-	<div className="dashboard-container">
-	  <div className="dashboard-sidebar-container">
-		<Sidebar />
-	  </div>
-	  <div className="note-page-content dashboard-content-container" style={{
-      width: "70%"
-    }}>
-		{
-		  title === "" 
-		  ? <></> 
-		  : <ButtonGroup>
-			  {
-				  editMode
-				  ? <><Button onClick={cancelEditing}>Cancel</Button>
-            <Button onClick={saveNote}>Save</Button></>
-				  : <Button onClick={() => setEditMode(true)}>Edit</Button>
-        }
-        <Button onClick={deleteNote}>Delete</Button>
-			</ButtonGroup>
-    }
-    {
-      editMode
-      ? <div className="edit-note-title-container">
-        <Input
-          className="edit-note-title-input"
-          onChange={e => setTitle(e.target.value)}
-          autoFocus
-          value={title}
-          size={SIZE.large}
-          placeholder="Click here to edit title"
-          overrides={{
-          Input: {
-            style: ({ $theme }) => {
-              return {
-                border: 'none !important',
-                backgroundColor: '#fff',
-                fontFamily: 'ubuntu',
-                fontSize: '2rem'
+    <div className="dashboard-container">
+      {
+        showNoteDeletionConfirmation &&
+        <NoteDeletionModal
+          onConfirm={() => { deleteNote() }}
+          onModalClose={() => setShowNoteDeletionConfirmation(false)}
+        />
+      }
+      <div className="dashboard-sidebar-container">
+        <Sidebar />
+      </div>
+      <div className="note-page-content dashboard-content-container" style={{
+        width: "70%",
+        zIndex: 0
+      }}>
+        {
+          title === ""
+            ? <></>
+            : <ButtonGroup>
+              {
+                editMode
+                  ? <><Button onClick={cancelEditing}>Cancel</Button>
+                    <Button onClick={saveNote}>Save</Button></>
+                  : <Button onClick={() => setEditMode(true)}>Edit</Button>
               }
-            }
-          }
-          }}
-        >
-        </Input>
-        </div>
-      : <h1>{ title }</h1>
-    }
-		<Editor
-      autofocus
-		  editorState={editorState}
-		  onEditorStateChange={setEditorState}
-      readOnly={!editMode}
-      handleKeyCommand={handleKeyCommand}
-		/>
-	  </div>
-	</div>
+              <Button onClick={() => setShowNoteDeletionConfirmation(true)}>Delete</Button>
+            </ButtonGroup>
+        }
+        {
+          editMode
+            ? <div className="edit-note-title-container">
+              <Input
+                className="edit-note-title-input"
+                onChange={e => setTitle(e.target.value)}
+                autoFocus
+                value={title}
+                size={SIZE.large}
+                placeholder="Click here to edit title"
+                overrides={{
+                  Input: {
+                    style: ({ $theme }) => {
+                      return {
+                        border: 'none !important',
+                        backgroundColor: '#fff',
+                        fontFamily: 'ubuntu',
+                        fontSize: '2rem'
+                      }
+                    }
+                  }
+                }}
+              >
+              </Input>
+            </div>
+            : <h1>{title}</h1>
+        }
+        <Editor
+          autofocus
+          editorState={editorState}
+          onEditorStateChange={setEditorState}
+          readOnly={!editMode}
+          handleKeyCommand={handleKeyCommand}
+        />
+      </div>
+    </div>
   )
 }
