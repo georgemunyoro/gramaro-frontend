@@ -19,6 +19,7 @@ import '../style/Note.css';
 import "../react-draft-wysiwyg.css"
 
 import Sidebar from '../Sidebar';
+import NoteEditor from '../NoteEditor';
 
 const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
   // const [isOpen, setIsOpen] = React.useState(false);
@@ -65,7 +66,7 @@ export default () => {
 
   const [editorState, setEditorState] = React.useState(
     () => EditorState.createEmpty()
-  )
+  );
 
   const cancelEditing = () => {
     setEditMode(false);
@@ -73,17 +74,6 @@ export default () => {
     setEditorState(
       () => EditorState.createWithContent(contentState)
     );
-  }
-
-  const handleKeyCommand = (command, editorState) => {
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-
-    if (newState) {
-      setEditorState(newState);
-      return 'handled';
-    }
-
-    return 'not-handled';
   }
 
   const deleteNote = async () => {
@@ -130,12 +120,13 @@ export default () => {
         })
       });
       const data = await res.json();
+      console.log(JSON.stringify(editorState.getCurrentContent()))
+      console.log(data)
       setContent(data.data.note.content);
     } catch (error) {
       console.error(error);
     }
   }
-
 
   React.useEffect(() => {
     async function getNoteData() {
@@ -146,7 +137,7 @@ export default () => {
         if (data.data.note.owner !== userId) return;
         setContent(data.data.note.content);
 
-        const contentState = convertFromRaw(JSON.parse(data.data.note.content));
+        const contentState = convertFromRaw(data.data.note.content);
         setEditorState(
           () => EditorState.createWithContent(contentState)
         )
@@ -218,12 +209,10 @@ export default () => {
             </div>
             : <h1>{title}</h1>
         }
-        <Editor
-          autofocus
+        <NoteEditor
+          editMode={editMode}
           editorState={editorState}
-          onEditorStateChange={setEditorState}
-          readOnly={!editMode}
-          handleKeyCommand={handleKeyCommand}
+          setEditorState={setEditorState}
         />
       </div>
     </div>

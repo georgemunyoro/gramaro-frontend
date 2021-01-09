@@ -1,19 +1,16 @@
 import * as React from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
-import { Button } from "baseui/button"
+import { EditorState, RichUtils } from 'draft-js';
+import { Editor } from "react-draft-wysiwyg";
+import { Button } from "baseui/button";
 
 import 'draft-js/dist/Draft.css';
 
-export default ({ value }) => {
-  const [editorState, setEditorState] = React.useState(
-    () => EditorState.createEmpty()
-  );
-
+export default ({ editMode, editorState, setEditorState }) => {
   const handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
 
     if (newState) {
-      setEditorState({ newState });
+      setEditorState(newState);
       return 'handled';
     }
 
@@ -22,11 +19,12 @@ export default ({ value }) => {
 
   return (
     <div className="note-editor-container">
-      <Button>B</Button>
       <Editor
+        autofocus
         editorState={editorState}
+        onEditorStateChange={setEditorState}
+        readOnly={!editMode}
         handleKeyCommand={handleKeyCommand}
-        onChange={(newEditorState) => setEditorState(newEditorState)}
       />
     </div>
   );
