@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { EditorState, RichUtils } from 'draft-js';
+import { RichUtils } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
-import { Button } from "baseui/button";
 
 import 'draft-js/dist/Draft.css';
 

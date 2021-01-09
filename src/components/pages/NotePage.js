@@ -12,9 +12,8 @@ import {
   ModalHeader,
   ROLE,
 } from "baseui/modal";
-import { convertFromRaw, convertToRaw, EditorState, RichUtils } from "draft-js";
+import { convertFromRaw, convertToRaw, EditorState } from "draft-js";
 import * as React from "react";
-import { Editor } from "react-draft-wysiwyg";
 import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 
@@ -30,8 +29,7 @@ const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
       role={ROLE.dialog}
       autoFocus
       animate
-      closeable  compare: feat/homePage   Can’t automatically merge. Don’t worry, you can still create the pull request.
-
+      closeable
     >
       <ModalHeader>Confirm Deletion</ModalHeader>
       <ModalBody>Are you sure you want to delete this note?</ModalBody>
@@ -79,17 +77,6 @@ export default () => {
     setEditMode(false);
     const contentState = convertFromRaw(JSON.parse(content));
     setEditorState(() => EditorState.createWithContent(contentState));
-  };
-
-  const handleKeyCommand = (command, editorState) => {
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-
-    if (newState) {
-      setEditorState(newState);
-      return "handled";
-    }
-
-    return "not-handled";
   };
 
   const deleteNote = async () => {
