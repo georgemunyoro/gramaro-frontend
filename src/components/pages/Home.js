@@ -3,7 +3,10 @@ import React from 'react';
 import { Block } from "baseui/block";
 import { Button, KIND } from "baseui/button"
 
+import { useMediaQuery } from "react-responsive";
+
 const Home = () => {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
   return (
     <Block
       style={{
@@ -16,7 +19,7 @@ const Home = () => {
       }}>
       <Block 
         style={{
-          width: "50%",
+          width: isTabletOrMobile ? "75%" : "50%",
           // height: "100vh",
           // display: "flex",
           // justifyContent: "center",
