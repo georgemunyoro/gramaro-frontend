@@ -17,6 +17,7 @@ import Signup from './components/pages/Signup';
 import Login from './components/pages/Login';
 import CreateNote from './components/pages/CreateNote';
 import NotePage from './components/pages/NotePage';
+import Home from './components/pages/Home';
 
 const engine = new Styletron();
 
@@ -49,7 +50,7 @@ export default function App() {
 			  <CreateNote />
 			</Route>
 			<Route exact path="/">
-			  <h1>Home</h1>
+			  <Home />
 			</Route>
 			<Route path="/n/:noteId">
 			  <NotePage />

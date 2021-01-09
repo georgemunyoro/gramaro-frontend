@@ -18,10 +18,10 @@ import { Editor } from "react-draft-wysiwyg";
 import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 
-import Sidebar from "../Sidebar";
+import Sidebar from '../Sidebar';
+import NoteEditor from '../NoteEditor';
 
 const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
-  // const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <Modal
@@ -30,7 +30,8 @@ const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
       role={ROLE.dialog}
       autoFocus
       animate
-      closeable
+      closeable  compare: feat/homePage   Can’t automatically merge. Don’t worry, you can still create the pull request.
+
     >
       <ModalHeader>Confirm Deletion</ModalHeader>
       <ModalBody>Are you sure you want to delete this note?</ModalBody>
@@ -72,9 +73,7 @@ export default () => {
     setShowNoteDeletionConfirmation,
   ] = React.useState(false);
 
-  const [editorState, setEditorState] = React.useState(() =>
-    EditorState.createEmpty()
-  );
+  const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
 
   const cancelEditing = () => {
     setEditMode(false);
@@ -145,6 +144,8 @@ export default () => {
         }
       );
       const data = await res.json();
+      console.log(JSON.stringify(editorState.getCurrentContent()))
+      console.log(data)
       setContent(data.data.note.content);
     } catch (error) {
       console.error(error);
@@ -189,62 +190,55 @@ export default () => {
       <div className="dashboard-sidebar-container">
         <Sidebar />
       </div>
-      <div
-        className="note-page-content dashboard-content-container"
-        style={{
-          width: "70%",
-          zIndex: 0,
-        }}
-      >
-        {title === "" ? (
-          <></>
-        ) : (
-          <ButtonGroup>
-            {editMode ? (
-              <>
-                <Button onClick={cancelEditing}>Cancel</Button>
-                <Button onClick={saveNote}>Save</Button>
-              </>
-            ) : (
-              <Button onClick={() => setEditMode(true)}>Edit</Button>
-            )}
-            <Button onClick={() => setShowNoteDeletionConfirmation(true)}>
-              Delete
-            </Button>
-          </ButtonGroup>
-        )}
-        {editMode ? (
-          <div className="edit-note-title-container">
-            <Input
-              className="edit-note-title-input"
-              onChange={(e) => setTitle(e.target.value)}
-              autoFocus
-              value={title}
-              size={SIZE.large}
-              placeholder="Click here to edit title"
-              overrides={{
-                Input: {
-                  style: ({ $theme }) => {
-                    return {
-                      border: "none !important",
-                      backgroundColor: "#fff",
-                      fontFamily: "ubuntu",
-                      fontSize: "2rem",
-                    };
-                  },
-                },
-              }}
-            ></Input>
-          </div>
-        ) : (
-          <h1>{title}</h1>
-        )}
-        <Editor
-          autofocus
+
+      <div className="note-page-content dashboard-content-container" style={{
+        width: "70%",
+        zIndex: 0
+      }}>
+        {
+          title === ""
+            ? <></>
+            : <ButtonGroup>
+              {
+                editMode
+                  ? <><Button onClick={cancelEditing}>Cancel</Button>
+                    <Button onClick={saveNote}>Save</Button></>
+                  : <Button onClick={() => setEditMode(true)}>Edit</Button>
+              }
+              <Button onClick={() => setShowNoteDeletionConfirmation(true)}>Delete</Button>
+            </ButtonGroup>
+        }
+        {
+          editMode
+            ? <div className="edit-note-title-container">
+              <Input
+                className="edit-note-title-input"
+                onChange={e => setTitle(e.target.value)}
+                autoFocus
+                value={title}
+                size={SIZE.large}
+                placeholder="Click here to edit title"
+                overrides={{
+                  Input: {
+                    style: ({ $theme }) => {
+                      return {
+                        border: 'none !important',
+                        backgroundColor: '#fff',
+                        fontFamily: 'ubuntu',
+                        fontSize: '2rem'
+                      }
+                    }
+                  }
+                }}
+              >
+              </Input>
+            </div>
+            : <h1>{title}</h1>
+        }
+        <NoteEditor
+          editMode={editMode}
           editorState={editorState}
-          onEditorStateChange={setEditorState}
-          readOnly={!editMode}
-          handleKeyCommand={handleKeyCommand}
+          setEditorState={setEditorState}
         />
       </div>
     </div>

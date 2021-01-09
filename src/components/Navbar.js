@@ -92,7 +92,7 @@ export default () => {
     <StyledLink
       $style={{
         textDecoration: 'none',
-        fontFamily: 'Ubuntu mono',
+        fontWeight: 1000,
         color: 'inherit',
         ':hover': {color: 'inherit'},
         ':visited': {color: 'inherit'},
