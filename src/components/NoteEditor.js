@@ -5,7 +5,7 @@ import { Button } from "baseui/button";
 
 import 'draft-js/dist/Draft.css';
 
-export default ({ editMode, editorState, setEditorState }) => {
+export default ({ editMode, editorState, setEditorState, style }) => {
   const handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
 
@@ -18,7 +18,7 @@ export default ({ editMode, editorState, setEditorState }) => {
   }
 
   return (
-    <div className="note-editor-container">
+    <div style={style} className="note-editor-container">
       <Editor
         autofocus
         editorState={editorState}
