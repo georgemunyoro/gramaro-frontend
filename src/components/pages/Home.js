@@ -1,9 +1,7 @@
+import {Block} from "baseui/block";
+import {Button, KIND} from "baseui/button"
 import React from 'react';
-
-import { Block } from "baseui/block";
-import { Button, KIND } from "baseui/button"
-
-import { useMediaQuery } from "react-responsive";
+import {useMediaQuery} from "react-responsive";
 
 const Home = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })

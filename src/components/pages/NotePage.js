@@ -1,45 +1,42 @@
-import * as React from 'react';
-import { useParams, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Button, KIND as ButtonKind } from 'baseui/button';
-import { ButtonGroup } from 'baseui/button-group';
-import { EditorState, convertFromRaw, convertToRaw, RichUtils } from 'draft-js';
-import { Editor } from "react-draft-wysiwyg";
-import { Input, SIZE } from 'baseui/input';
-import {
-  ModalHeader,
-  ModalBody,
-  Modal,
-  ModalButton,
-  ModalFooter,
-  ROLE,
-} from "baseui/modal"
-
 import '../style/Note.css';
 import "../react-draft-wysiwyg.css"
 
-import Sidebar from '../Sidebar';
-import NoteEditor from '../NoteEditor';
+import {Button, KIND as ButtonKind} from 'baseui/button';
+import {ButtonGroup} from 'baseui/button-group';
+import {Input, SIZE} from 'baseui/input';
+import {
+  Modal,
+  ModalBody,
+  ModalButton,
+  ModalFooter,
+  ModalHeader,
+  ROLE,
+} from "baseui/modal"
+import {convertFromRaw, convertToRaw, EditorState, RichUtils} from 'draft-js';
+import * as React from 'react';
+import {Editor} from "react-draft-wysiwyg";
+import {useSelector} from 'react-redux';
+import {Redirect, useParams} from 'react-router-dom';
 
-const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
-  // const [isOpen, setIsOpen] = React.useState(false);
+import NoteEditor from '../NoteEditor';
+import Sidebar from '../Sidebar';
+
+const NoteDeletionModal =
+    ({onConfirm, onModalClose}) => {
+      // const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <Modal
-      onClose={onModalClose}
-      isOpen={true}
-      role={ROLE.dialog}
-      autoFocus
-      animate
-      closeable
-    >
-      <ModalHeader>Confirm Deletion</ModalHeader>
+  onClose = {onModalClose} isOpen = {true} role = {ROLE.dialog} autoFocus
+  animate
+  closeable >
+      <ModalHeader>Confirm Deletion<
+          /ModalHeader>
       <ModalBody>Are you sure you want to delete this note?</ModalBody>
-      <ModalFooter>
-        <ModalButton
+      <ModalFooter>< ModalButton
           kind={ButtonKind.tertiary}
           onClick={() => {
-            onModalClose();
+    onModalClose();
           }}>Cancel</ModalButton>
         <ModalButton
           onClick={() => {
@@ -49,7 +46,7 @@ const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
       </ModalFooter>
     </Modal >
   )
-}
+    }
 
 export default () => {
   const userId = useSelector(state => state.userId);

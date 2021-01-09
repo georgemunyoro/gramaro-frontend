@@ -1,23 +1,22 @@
+import {BaseProvider, LightTheme} from 'baseui';
 import React from 'react';
+import {useDispatch} from 'react-redux';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
+  Switch,
 } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setUserId, setLogStatus, setUsername } from './actions';
+import {Client as Styletron} from 'styletron-engine-atomic'
+import {Provider as StyletronProvider} from 'styletron-react';
 
-import { Client as Styletron } from 'styletron-engine-atomic'
-import { Provider as StyletronProvider } from 'styletron-react';
-import { LightTheme, BaseProvider } from 'baseui';
-
-import Dashboard from './components/pages/Dashboard';
+import {setLogStatus, setUserId, setUsername} from './actions';
 import Navbar from './components/Navbar';
-import Signup from './components/pages/Signup';
-import Login from './components/pages/Login';
 import CreateNote from './components/pages/CreateNote';
-import NotePage from './components/pages/NotePage';
+import Dashboard from './components/pages/Dashboard';
 import Home from './components/pages/Home';
+import Login from './components/pages/Login';
+import NotePage from './components/pages/NotePage';
+import Signup from './components/pages/Signup';
 
 const engine = new Styletron();
 
@@ -26,9 +25,9 @@ export default function App() {
   const dispatch = useDispatch();
 
   if (localStorage.getItem('uuid') !== null) {
-	dispatch(setUsername(localStorage.getItem('username')));
-	dispatch(setUserId(localStorage.getItem('uuid')));
-	dispatch(setLogStatus(true));
+    dispatch(setUsername(localStorage.getItem('username')));
+    dispatch(setUserId(localStorage.getItem('uuid')));
+    dispatch(setLogStatus(true));
   }
 
   return (
