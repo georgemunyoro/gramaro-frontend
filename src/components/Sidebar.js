@@ -1,9 +1,13 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Navigation } from 'baseui/side-navigation';
 
 export default () => {
-  const [activeItemId, setActiveItemId] = React.useState("#notes");
+  const [activeItemId, setActiveItemId] = useState("#notes");
 
+	const onChange = ({item}) => {
+		setActiveItemId(item.itemId);
+	}
+	
   return (
 	<Navigation
 	  items={[
@@ -13,9 +17,7 @@ export default () => {
 	  ]}
 
 	  activeItemId={activeItemId}
-	  onChange={({item}) => setActiveItemId(item.itemId)}
-
+	  onChange={onChange}
 	/>
   )
 }
-
