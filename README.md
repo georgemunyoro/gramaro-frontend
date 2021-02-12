@@ -57,6 +57,7 @@ examples.
 - [React](https://reactjs.org/)
 - [Express](https://expressjs.com/)
 - [Postgres](https://www.postgresql.org/)
+- [Prisma](https://prisma.io)
 
 <!-- GETTING STARTED -->
 
