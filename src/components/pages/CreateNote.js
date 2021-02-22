@@ -35,7 +35,7 @@ export default () => {
       return;
     }
     try {
-      const res = await fetch(process.env.REACT_APP_API_URL + '/notes', {
+      await fetch(process.env.REACT_APP_API_URL + '/notes', {
         method: "POST",
         headers: {
           'Accept': 'application/json',
