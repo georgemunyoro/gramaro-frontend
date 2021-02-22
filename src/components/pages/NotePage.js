@@ -1,9 +1,9 @@
 import "../style/Note.css";
 import "../react-draft-wysiwyg.css";
 
-import { Button, KIND as ButtonKind } from "baseui/button";
-import { ButtonGroup } from "baseui/button-group";
-import { Input, SIZE } from "baseui/input";
+import {Button, KIND as ButtonKind} from "baseui/button";
+import {ButtonGroup} from "baseui/button-group";
+import {Input, SIZE} from "baseui/input";
 import {
   Modal,
   ModalBody,
@@ -12,32 +12,27 @@ import {
   ModalHeader,
   ROLE,
 } from "baseui/modal";
-import { convertFromRaw, convertToRaw, EditorState } from "draft-js";
+import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
 import * as React from "react";
-import { useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import {useSelector} from "react-redux";
+import {Redirect, useParams} from "react-router-dom";
 
-import Sidebar from '../Sidebar';
 import NoteEditor from '../NoteEditor';
+import Sidebar from '../Sidebar';
 
-const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
-
+const NoteDeletionModal = ({onConfirm, onModalClose}) => {
   return (
     <Modal
-      onClose={onModalClose}
-      isOpen={true}
-      role={ROLE.dialog}
-      autoFocus
-      animate
-      closeable
-    >
-      <ModalHeader>Confirm Deletion</ModalHeader>
+  onClose = {onModalClose} isOpen = {true} role = {ROLE.dialog} autoFocus
+  animate
+  closeable >
+      <ModalHeader>Confirm Deletion<
+          /ModalHeader>
       <ModalBody>Are you sure you want to delete this note?</ModalBody>
-      <ModalFooter>
-        <ModalButton
+      <ModalFooter>< ModalButton
           kind={ButtonKind.tertiary}
           onClick={() => {
-            onModalClose();
+    onModalClose();
           }}
         >
           Cancel
