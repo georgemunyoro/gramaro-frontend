@@ -1,9 +1,10 @@
+import {Input, SIZE} from "baseui/input";
 import * as React from "react";
-import { Input, SIZE } from "baseui/input";
-import Note from "./Note";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
-export default ({ value }) => {
+import Note from "./Note";
+
+export default ({value}) => {
   const [notes, setNotes] = React.useState([]);
   const [query, setQuery] = React.useState("");
   const userId = useSelector((state) => state.userId);
