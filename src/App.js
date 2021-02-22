@@ -1,11 +1,11 @@
-import {BaseProvider, LightTheme} from "baseui";
+import { BaseProvider, LightTheme } from "baseui";
 import React from "react";
-import {useDispatch} from "react-redux";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Client as Styletron} from "styletron-engine-atomic";
-import {Provider as StyletronProvider} from "styletron-react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Client as Styletron } from "styletron-engine-atomic";
+import { Provider as StyletronProvider } from "styletron-react";
 
-import {setLogStatus, setUserId, setUsername} from "./actions";
+import { setLogStatus, setUserId, setUsername } from "./actions";
 import Navbar from "./components/Navbar";
 import CreateNote from "./components/pages/CreateNote";
 import Dashboard from "./components/pages/Dashboard";

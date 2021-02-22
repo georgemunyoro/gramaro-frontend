@@ -1,10 +1,10 @@
 import "draft-js/dist/Draft.css";
 
-import {RichUtils} from "draft-js";
+import { RichUtils } from "draft-js";
 import * as React from "react";
-import {Editor} from "react-draft-wysiwyg";
+import { Editor } from "react-draft-wysiwyg";
 
-export default ({editMode, editorState, setEditorState, style}) => {
+export default ({ editMode, editorState, setEditorState, style }) => {
   const handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
 
@@ -19,12 +19,11 @@ export default ({editMode, editorState, setEditorState, style}) => {
   return (
     <div style={style} className="note-editor-container">
       <Editor
-  autofocus
+        autofocus
         editorState={editorState}
         onEditorStateChange={setEditorState}
         readOnly={!editMode}
-        handleKeyCommand={
-    handleKeyCommand}
+        handleKeyCommand={handleKeyCommand}
       />
     </div>
   );
