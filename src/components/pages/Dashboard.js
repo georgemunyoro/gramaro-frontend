@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
-
 import "../style/Dashboard.css";
 
-import Sidebar from "../Sidebar";
+import * as React from "react";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+
 import NotesView from "../NotesView";
+import Sidebar from "../Sidebar";
 
 export default () => {
   const loggedIn = useSelector((state) => state.loggedIn);

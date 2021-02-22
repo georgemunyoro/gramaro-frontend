@@ -17,8 +17,8 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 
-import Sidebar from "../Sidebar";
 import NoteEditor from "../NoteEditor";
+import Sidebar from "../Sidebar";
 
 const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
   return (

@@ -1,8 +1,8 @@
-import * as React from "react";
-import { RichUtils } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-
 import "draft-js/dist/Draft.css";
+
+import { RichUtils } from "draft-js";
+import * as React from "react";
+import { Editor } from "react-draft-wysiwyg";
 
 export default ({ editMode, editorState, setEditorState, style }) => {
   const handleKeyCommand = (command, editorState) => {

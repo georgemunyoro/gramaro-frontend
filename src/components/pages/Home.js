@@ -1,8 +1,6 @@
-import React from "react";
-
 import { Block } from "baseui/block";
 import { Button, KIND } from "baseui/button";
-
+import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 const Home = () => {
@@ -18,6 +16,7 @@ const Home = () => {
         backgroundSize: "cover",
       }}
     >
+      {" "}
       <Block
         style={{
           width: isTabletOrMobile ? "75%" : "50%",
@@ -28,6 +27,7 @@ const Home = () => {
           // flexDirection: "column",
         }}
       >
+        {" "}
         <h1
           style={{
             // width: "50%",

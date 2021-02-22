@@ -1,7 +1,7 @@
+import "./style/Note.css";
+
 import * as React from "react";
 import { Link } from "react-router-dom";
-
-import "./style/Note.css";
 
 export default ({ title, note }) => {
   return (

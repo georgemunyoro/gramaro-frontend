@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Input } from "baseui/input";
-import { Button } from "baseui/button";
-import { Notification } from "baseui/notification";
-import { Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
-
 import "../style/Signup.css";
+
+import { Button } from "baseui/button";
+import { Input } from "baseui/input";
+import { Notification } from "baseui/notification";
+import * as React from "react";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 export default () => {
   const [alertMessages, setAlertMessages] = React.useState([]);
@@ -61,14 +61,14 @@ export default () => {
           type="email"
           placeholder="peter.gregory@hooli.com"
           className="input"
-        />
+        />{" "}
         <Input
           onChange={(e) => setUsername(e.target.value)}
           name="username"
           type="text"
           placeholder="name"
           className="input"
-        />
+        />{" "}
         <Input
           onChange={(e) => setPassword(e.target.value)}
           name="password"

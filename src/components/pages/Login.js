@@ -1,12 +1,13 @@
-import * as React from "react";
-import { Input } from "baseui/input";
-import { Button } from "baseui/button";
-import { Notification } from "baseui/notification";
-import { Redirect } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-import { setUserId, setLogStatus, setUsername } from "../../actions";
-
 import "../style/Login.css";
+
+import { Button } from "baseui/button";
+import { Input } from "baseui/input";
+import { Notification } from "baseui/notification";
+import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router";
+
+import { setLogStatus, setUserId, setUsername } from "../../actions";
 
 export default () => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ export default () => {
           type="email"
           placeholder="peter.gregory@hooli.com"
           className="input"
-        />
+        />{" "}
         <Input
           onChange={(e) => setPassword(e.target.value)}
           name="password"

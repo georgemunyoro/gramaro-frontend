@@ -1,13 +1,11 @@
-import * as React from "react";
 import { useStyletron } from "baseui";
-import { StyledLink } from "baseui/link";
-import { Layer } from "baseui/layer";
-import { useHistory } from "react-router";
-
 import { Unstable_AppNavBar as AppNavBar } from "baseui/app-nav-bar";
-
 import { Menu as MenuIcon } from "baseui/icon";
+import { Layer } from "baseui/layer";
+import { StyledLink } from "baseui/link";
+import * as React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 const getMainNav = (username) => [
   {
@@ -91,7 +89,8 @@ export default () => {
       }}
       href={"#"}
     >
-      gramaro
+      {" "}
+      gramaro{" "}
     </StyledLink>
   );
 

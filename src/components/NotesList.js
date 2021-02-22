@@ -1,7 +1,8 @@
-import * as React from "react";
 import { Input, SIZE } from "baseui/input";
-import Note from "./Note";
+import * as React from "react";
 import { useSelector } from "react-redux";
+
+import Note from "./Note";
 
 export default ({ value }) => {
   const [notes, setNotes] = React.useState([]);
