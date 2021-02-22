@@ -13,7 +13,7 @@ export default ({ value }) => {
   }
 
   React.useEffect(() => {
-	const fetchNotes = async () {
+	const fetchNotes = async () => {
 	  try {
 		const url = `${process.env.REACT_APP_API_URL}/notes/u/${userId}`;
 		const res = await fetch(url);
