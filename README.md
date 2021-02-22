@@ -145,12 +145,18 @@ Project Link:
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/georgemunyoro/gramaro-frontend.svg
-[contributors-url]: https://github.com/georgemunyoro/gramaro-frontend/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/georgemunyoro/gramaro-frontend.svg
+[contributors-shield]:
+  https://img.shields.io/github/contributors/georgemunyoro/gramaro-frontend.svg
+[contributors-url]:
+  https://github.com/georgemunyoro/gramaro-frontend/graphs/contributors
+[forks-shield]:
+  https://img.shields.io/github/forks/georgemunyoro/gramaro-frontend.svg
 [forks-url]: https://github.com/georgemunyoro/gramaro-frontend/network/members
-[stars-shield]: https://img.shields.io/github/stars/georgemunyoro/gramaro-frontend.svg
+[stars-shield]:
+  https://img.shields.io/github/stars/georgemunyoro/gramaro-frontend.svg
 [stars-url]: https://github.com/georgemunyoro/gramaro-frontend/stargazers
-[license-url]: https://github.com/georgemunyoro/gramaro-frontend/blob/master/LICENSE.txt
-[license-shield]: https://img.shields.io/github/license/georgemunyoro/gramaro-frontend.svg
+[license-url]:
+  https://github.com/georgemunyoro/gramaro-frontend/blob/master/LICENSE.txt
+[license-shield]:
+  https://img.shields.io/github/license/georgemunyoro/gramaro-frontend.svg
 [linkedin-url]: https://linkedin.com/in/georgemunyoro
