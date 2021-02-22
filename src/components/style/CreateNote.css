@@ -1,11 +1,11 @@
-
 .create-note-container {
   width: 100%;
   margin-top: 10rem;
   padding: 0 10%;
 }
 
-.create-note-title-p, .create-note-title-input {
+.create-note-title-p,
+.create-note-title-input {
   font-family: "ubuntu";
   font-size: 2rem;
 }
