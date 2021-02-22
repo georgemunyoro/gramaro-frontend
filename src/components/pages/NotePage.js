@@ -1,9 +1,9 @@
 import "../style/Note.css";
 import "../react-draft-wysiwyg.css";
 
-import {Button, KIND as ButtonKind} from "baseui/button";
-import {ButtonGroup} from "baseui/button-group";
-import {Input, SIZE} from "baseui/input";
+import { Button, KIND as ButtonKind } from "baseui/button";
+import { ButtonGroup } from "baseui/button-group";
+import { Input, SIZE } from "baseui/input";
 import {
   Modal,
   ModalBody,
@@ -12,27 +12,31 @@ import {
   ModalHeader,
   ROLE,
 } from "baseui/modal";
-import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
+import { convertFromRaw, convertToRaw, EditorState } from "draft-js";
 import * as React from "react";
-import {useSelector} from "react-redux";
-import {Redirect, useParams} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Redirect, useParams } from "react-router-dom";
 
-import NoteEditor from '../NoteEditor';
-import Sidebar from '../Sidebar';
+import NoteEditor from "../NoteEditor";
+import Sidebar from "../Sidebar";
 
-const NoteDeletionModal = ({onConfirm, onModalClose}) => {
+const NoteDeletionModal = ({ onConfirm, onModalClose }) => {
   return (
     <Modal
-  onClose = {onModalClose} isOpen = {true} role = {ROLE.dialog} autoFocus
-  animate
-  closeable >
-      <ModalHeader>Confirm Deletion<
-          /ModalHeader>
+      onClose={onModalClose}
+      isOpen={true}
+      role={ROLE.dialog}
+      autoFocus
+      animate
+      closeable
+    >
+      <ModalHeader>Confirm Deletion</ModalHeader>
       <ModalBody>Are you sure you want to delete this note?</ModalBody>
-      <ModalFooter>< ModalButton
+      <ModalFooter>
+        <ModalButton
           kind={ButtonKind.tertiary}
           onClick={() => {
-    onModalClose();
+            onModalClose();
           }}
         >
           Cancel
@@ -66,7 +70,9 @@ export default () => {
     setShowNoteDeletionConfirmation,
   ] = React.useState(false);
 
-  const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
+  const [editorState, setEditorState] = React.useState(() =>
+    EditorState.createEmpty()
+  );
 
   const cancelEditing = () => {
     setEditMode(false);
@@ -122,8 +128,8 @@ export default () => {
         }
       );
       const data = await res.json();
-      console.log(JSON.stringify(editorState.getCurrentContent()))
-      console.log(data)
+      console.log(JSON.stringify(editorState.getCurrentContent()));
+      console.log(data);
       setContent(data.data.note.content);
     } catch (error) {
       console.error(error);
@@ -169,50 +175,56 @@ export default () => {
         <Sidebar />
       </div>
 
-      <div className="note-page-content dashboard-content-container" style={{
-        width: "70%",
-        zIndex: 0
-      }}>
-        {
-          title === ""
-            ? <></>
-            : <ButtonGroup>
-              {
-                editMode
-                  ? <><Button onClick={cancelEditing}>Cancel</Button>
-                    <Button onClick={saveNote}>Save</Button></>
-                  : <Button onClick={() => setEditMode(true)}>Edit</Button>
-              }
-              <Button onClick={() => setShowNoteDeletionConfirmation(true)}>Delete</Button>
-            </ButtonGroup>
-        }
-        {
-          editMode
-            ? <div className="edit-note-title-container">
-              <Input
-                className="edit-note-title-input"
-                onChange={e => setTitle(e.target.value)}
-                autoFocus
-                value={title}
-                size={SIZE.large}
-                placeholder="Click here to edit title"
-                overrides={{
-                  Input: {
-                    style: ({ $theme }) => {
-                      return {
-                        border: 'none !important',
-                        backgroundColor: '#fff',
-                        fontFamily: 'ubuntu',
-                        fontSize: '2rem'
-                      }
-                    }
-                  }
-                }}
-              >
-              </Input>
-            </div>
-            : <h1>{title}</h1>
-        }
+      <div
+        className="note-page-content dashboard-content-container"
+        style={{
+          width: "70%",
+          zIndex: 0,
+        }}
+      >
+        {title === "" ? (
+          <></>
+        ) : (
+          <ButtonGroup>
+            {editMode ? (
+              <>
+                <Button onClick={cancelEditing}>Cancel</Button>
+                <Button onClick={saveNote}>Save</Button>
+              </>
+            ) : (
+              <Button onClick={() => setEditMode(true)}>Edit</Button>
+            )}
+            <Button onClick={() => setShowNoteDeletionConfirmation(true)}>
+              Delete
+            </Button>
+          </ButtonGroup>
+        )}
+        {editMode ? (
+          <div className="edit-note-title-container">
+            <Input
+              className="edit-note-title-input"
+              onChange={(e) => setTitle(e.target.value)}
+              autoFocus
+              value={title}
+              size={SIZE.large}
+              placeholder="Click here to edit title"
+              overrides={{
+                Input: {
+                  style: ({ $theme }) => {
+                    return {
+                      border: "none !important",
+                      backgroundColor: "#fff",
+                      fontFamily: "ubuntu",
+                      fontSize: "2rem",
+                    };
+                  },
+                },
+              }}
+            ></Input>
+          </div>
+        ) : (
+          <h1>{title}</h1>
+        )}
         <NoteEditor
           editMode={editMode}
           editorState={editorState}
