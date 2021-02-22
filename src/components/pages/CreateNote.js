@@ -47,9 +47,7 @@ export default () => {
           contents: JSON.stringify(convertToRaw(editorState.getCurrentContent()))
         })
       });
-      const data = await res.json();
       setCreated(true);
-
     } catch (error) {
       console.error(error);
     }
