@@ -1,19 +1,17 @@
-import * as React from 'react';
-import { Input, SIZE } from 'baseui/input';
-import { Button } from 'baseui/button';
-import { Notification } from 'baseui/notification';
-import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-
-import { EditorState, convertToRaw, RichUtils } from 'draft-js';
-import { Editor } from "react-draft-wysiwyg";
 import '../react-draft-wysiwyg.css';
-
-// Icons
-import { Upload, Hide } from 'baseui/icon';
-import DeleteAlt from 'baseui/icon/delete-alt';
-
 import '../style/CreateNote.css';
+
+import {Button} from 'baseui/button';
+// Icons
+import {Hide, Upload} from 'baseui/icon';
+import DeleteAlt from 'baseui/icon/delete-alt';
+import {Input, SIZE} from 'baseui/input';
+import {Notification} from 'baseui/notification';
+import {convertToRaw, EditorState, RichUtils} from 'draft-js';
+import * as React from 'react';
+import {Editor} from "react-draft-wysiwyg";
+import {useSelector} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 export default () => {
   const [editorState, setEditorState] = React.useState(
