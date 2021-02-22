@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { RichUtils } from 'draft-js';
+import * as React from "react";
+import { RichUtils } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 
-import 'draft-js/dist/Draft.css';
+import "draft-js/dist/Draft.css";
 
 export default ({ editMode, editorState, setEditorState, style }) => {
   const handleKeyCommand = (command, editorState) => {
@@ -10,11 +10,11 @@ export default ({ editMode, editorState, setEditorState, style }) => {
 
     if (newState) {
       setEditorState(newState);
-      return 'handled';
+      return "handled";
     }
 
-    return 'not-handled';
-  }
+    return "not-handled";
+  };
 
   return (
     <div style={style} className="note-editor-container">
@@ -27,4 +27,4 @@ export default ({ editMode, editorState, setEditorState, style }) => {
       />
     </div>
   );
-}
+};
