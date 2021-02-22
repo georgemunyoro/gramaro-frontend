@@ -45,10 +45,6 @@ export default () => {
           contents: JSON.stringify(convertToRaw(editorState.getCurrentContent()))
         })
       });
-      const data = await res.json();
-      console.clear();
-      console.log(editorState.getCurrentContent().getPlainText())
-      console.log(data);
     } catch (error) {
       console.error(error);
     }
