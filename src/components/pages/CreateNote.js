@@ -26,6 +26,8 @@ export default () => {
   const [alertMessages, setAlertMessages] = React.useState([]);
   const [title, setTitle] = React.useState("");
 
+  const [created, setCreated] = React.useState(false);
+
   const saveNote = async (event) => {
     event.preventDefault();
     if (title === "") {
@@ -45,6 +47,7 @@ export default () => {
           contents: JSON.stringify(convertToRaw(editorState.getCurrentContent()))
         })
       });
+      setCreated(true);
     } catch (error) {
       console.error(error);
     }
@@ -70,6 +73,7 @@ export default () => {
   }
 
   if (loggedIn === false) return <Redirect to="/login" />
+  if (created) return <Redirect to="/dashboard" />
 
   return (
 

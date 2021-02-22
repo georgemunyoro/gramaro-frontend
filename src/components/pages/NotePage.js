@@ -80,10 +80,6 @@ export default () => {
   };
 
   const deleteNote = async () => {
-    if (title === "") {
-      // setAlertMessages(["You have not provided a title"]);
-      return;
-    }
     try {
       const res = await fetch(
         process.env.REACT_APP_API_URL + "/notes/" + noteId,
